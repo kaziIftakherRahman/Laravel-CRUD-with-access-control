@@ -23,12 +23,28 @@
         </div>
 
         <div>
-            <form method="POST" action="{{ route('store') }}">
+            <form method="POST" action="{{ route('store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="flex flex-col gap-5">
-                    <input type="text" name="name" placeholder="Name" class="border border-gray-300 rounded p-2 w-full mb-4">
-                    <input type="text" name="description" placeholder="Description" class="border border-gray-300 rounded p-2 w-full mb-4">
+
+                    <label for="">Name</label>
+                    <input type="text" name="name" value="{{ old('name') }}" placeholder="Kazi Iftakher Rahman" class="border border-gray-300 rounded p-2 w-full mb-4">
+                    @error('name')
+                        <div class="text-red-500 text-sm mb-2">{{ $message }}</div>
+                    @enderror
+
+                    <label for="">Description</label>
+                    <input type="text" name="description" value="{{ old('description') }}" placeholder="Learning Laravel" class="border border-gray-300 rounded p-2 w-full mb-4">
+                    @error('description')
+                        <div class="text-red-500 text-sm mb-2">{{ $message }}</div>
+                    @enderror
+
+                    <label for="">Select image</label>
                     <input type="file" name="image">
+                    @error('image')
+                        <div class="text-red-500 text-sm mb-2">{{ $message }}</div>
+                    @enderror
+
                     <input type="submit" value="Create Post" class="bg-green-600 text-white rounded py-2 px-4 mt-4">
                 </div>
             </form>
