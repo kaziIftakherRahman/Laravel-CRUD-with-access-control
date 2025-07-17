@@ -22,11 +22,17 @@
 </head>
 <body>
     <div class="container">
-        <div class="flex justify-between items-center my-4">
+        <div class="flex justify-between my-4">
             <h2 class="text-red-500 text-xl">HOME</h2>
-            <button>            
-                <a href="/create" class="btn">Add New Post</a>
-            </button>
+            @can('is-admin')
+                <button>            
+                    <a href="/posts/create" class="btn">Add New Post</a>
+                </button>
+            @endcan
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="btn-red">Logout</button>
+            </form>
         </div>
 
         @if (session('success'))
@@ -58,14 +64,16 @@
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{{ $post->name }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{{ $post->description }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><img src="images/{{ $post->image }}" width="80rem" alt=""></td>
-
+               
                             <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+                                @can('is-admin')
                                 <a href="{{route('edit', $post->id)}}" class="btn">Edit</a>
                                 <form method="post" class="inline" action="{{ route('delete', $post->id) }}">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn-red">Delete</button>
                                 </form>
+                                @endcan
                             </td>
                             </tr>
                             
@@ -76,6 +84,8 @@
                         </tbody>
                         </table>
                         {{ $posts->links() }} <!-- Pagination links -->
+                        
+                        
                     </div>
                     </div>
                 </div>
