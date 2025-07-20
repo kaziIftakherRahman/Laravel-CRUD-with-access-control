@@ -4,6 +4,9 @@ This project enables logged in users (labeled as “observer”) to view posts m
 Each post consists of “ID”, “Name”, "Description" and “Image” which are stored in a database implemented using mysql. 
 Admins can use CRUD functionalities using admin credentials (role set to ‘admin’ in “users” table).
 
+Admin cred: kaziarifurrahman80@gmail.com, Admin100
+Observer cred: user@email.com, User@100
+
 ## Technology stack
 
 HTML, CSS, Laravel, Blade, Breeze, MySQL
