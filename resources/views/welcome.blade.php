@@ -22,7 +22,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="flex justify-between my-4">
+        <div class="flex justify-between my-10">
             <h2 class="text-red-500 text-xl">HOME</h2>
             @can('is-admin')
                 <button>            
@@ -41,6 +41,7 @@
             </div>
         @endif
 
+        <!--
         <div class="div">
             <div class="flex flex-col">
                 <div class="-m-1.5 overflow-x-auto">
@@ -83,15 +84,66 @@
                         
                         </tbody>
                         </table>
-                        {{ $posts->links() }} <!-- Pagination links -->
+                        
                         
                         
                     </div>
                     </div>
                 </div>
-                </div>
+            </div>
+
+            <div class="mt-4 pb-10">
+                {{ $posts->links() }} 
+            </div>
+
+            -->
+            
+                
+                    @foreach ($posts as $post)
+
+                    <div class="col-span-3  bg-white border border-gray-200 rounded-xl shadow-2xs sm:flex gap-4 mt-10 mb-6">
+                    <div class="shrink-0 relative w-full rounded-t-xl pt-[20%] overflow-hidden  sm:rounded-s-xl sm:max-w-60 md:rounded-se-none md:max-w-xs" >
+                        <img class="size-full absolute top-0 start-0 object-cover" src="images/{{ $post->image }}" alt="{{ $post->id }} image" />
+                    </div>
+                    <div class="bg-white flex flex-wrap">
+                        
+                        <div class="p-4 flex flex-col h-full sm:p-7">
+                            
+                        <h3 class="text-lg font-bold text-gray-800 ">
+                            {{ $post->name }}
+                        </h3>
+                        <p class="mt-1 text-black-500 ">
+                            {{ $post->description }}
+                        </p>
+                        <div class="mt-5 sm:mt-auto">
+                            @can('is-admin')
+                            <a href="{{route('edit', $post->id)}}" class="btn">Edit</a>
+                                        <form method="post" class="inline" action="{{ route('delete', $post->id) }}">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn-red">Delete</button>
+                                        </form>
+                            @endcan
+                        </div>
+                            
+                        </div>
+                        
+                    </div>
+                    </div>
+
+                    @endforeach
+                
+            
+
+
+
+            <div class="mt-4 pb-10">
+                {{ $posts->links() }} <!-- Pagination links -->
+            </div>
+            
 
         </div>
+        
         
     </div>
 
