@@ -1,3 +1,17 @@
+## Project Brief
+
+This project enables logged in users (labeled as “observer”) to view posts made by admin. 
+Each post consists of “ID”, “Name”, "Description" and “Image” which are stored in a database implemented using mysql. 
+Admins can use CRUD functionalities using admin credentials (role set to ‘admin’ in “users” table).
+
+Admin cred: kaziarifurrahman80@gmail.com, Admin100
+
+Observer cred: user@email.com, User@100
+
+## Technology stack
+
+HTML, CSS, Laravel, Blade, Breeze, MySQL
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
