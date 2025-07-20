@@ -5,6 +5,7 @@ Each post consists of “ID”, “Name”, "Description" and “Image” which 
 Admins can use CRUD functionalities using admin credentials (role set to ‘admin’ in “users” table).
 
 Admin cred: kaziarifurrahman80@gmail.com, Admin100
+
 Observer cred: user@email.com, User@100
 
 ## Technology stack
