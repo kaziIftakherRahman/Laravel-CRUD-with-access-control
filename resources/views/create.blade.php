@@ -71,7 +71,7 @@
             <!-- Actions -->
             <div class="btn-primary flex items-center gap-4">
                 <a href="/" class="text-sm font-medium text-white-600 transition-colors">
-                    Back to Dashboard
+                    Back to Home
                 </a>
             </div>
         </nav>

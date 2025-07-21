@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NutriBites By Nishat Lamia</title>
+    <title>NutriBites By NutriNish</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -73,8 +73,9 @@
         <nav class="max-w-6xl w-full bg-white/70 backdrop-blur-lg rounded-xl mx-auto flex items-center justify-between p-2 shadow-sm">
             <!-- Logo -->
             <a class="flex items-center gap-2 flex-none py-1 text-xl font-semibold" href="#" aria-label="NutriNish">
-                <img src="images\nutrinish_logo.png" class="w-12 h-12" alt="NutriNish Logo" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F8AFA6/FFFFFF?text=NN';">
-                <span class="font-brand text-2xl text-brand-dark hidden sm:inline">Nutri Nish</span>
+                <img src="images\nutrinish_logo.png" class="w-12 h-12" alt="NutriNish Logo" onerror="this.onerror=null;">
+                <p>presents</p>
+                <span class="font-brand text-2xl text-brand-dark hidden sm:inline">NutriBytes</span>
             </a>
             
             <!-- Actions -->
@@ -98,8 +99,8 @@
 
         <!-- Page Header -->
         <div class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-brand-dark">Welcome to NutriBytes</h1>
-            <p class="text-lg text-gray-600 mt-2">Your daily dose of nutritional wisdom from Nishat Lamia.</p>
+            <h1 class="text-4xl md:text-5xl font-bold text-brand-dark">Welcome to <span class="font-brand">NutriBytes </span></h1>
+            <p class="text-lg text-gray-600 mt-6">Your daily dose of nutritional wisdom from NutriNish.</p>
         
 
         
