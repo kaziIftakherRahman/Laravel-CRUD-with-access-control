@@ -3,149 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-        .container {
-            @apply mx-auto px-10;
-        }
+    <title>NutriBites By Nishat Lamia</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter for body, Pacifico for brand text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
 
-        .btn {
-            @apply bg-green-600 text-white rounded py-2 px-4;
+    <script>
+        // Custom Tailwind configuration
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'brand': ['Pacifico', 'cursive'],
+                    },
+                    colors: {
+                        'brand-pink': '#F8AFA6',
+                        'brand-light-pink': '#FDECEC',
+                        'brand-dark': '#333333',
+                        'brand-gray': '#F4F4F4',
+                        'brand-success': '#4CAF50',
+                        'brand-danger': '#F44336',
+                    }
+                }
+            }
         }
-        .btn-red{
-            @apply bg-red-600 text-white rounded py-2 px-4;
+    </script>
+
+    <style type="text/tailwindcss">
+        /* Custom component styles */
+        @layer components {
+            .btn {
+                @apply inline-block px-6 py-2.5 text-sm font-semibold text-white rounded-lg shadow-md transition-transform duration-300 ease-in-out transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2;
+            }
+            .btn-primary {
+                @apply btn bg-brand-dark hover:bg-black;
+            }
+            .btn-danger {
+                @apply btn bg-brand-danger hover:bg-red-700;
+            }
+            .btn-danger-outline {
+                 @apply inline-block px-6 py-2.5 text-sm font-semibold text-brand-danger bg-white border border-brand-danger rounded-lg shadow-sm transition-colors duration-300 ease-in-out hover:bg-brand-danger hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-danger focus:ring-offset-2;
+            }
         }
+        /* Styling for Laravel Pagination */
+        .pagination nav {
+            @apply flex justify-center items-center space-x-2;
+        }
+        .pagination span, .pagination a {
+            @apply px-4 py-2 rounded-md text-sm;
+        }
+        .pagination .pagination-active span {
+            @apply bg-brand-dark text-white;
+        }
+        .pagination a {
+            @apply text-gray-600 hover:bg-brand-gray;
         }
     </style>
-    <title>CRUD project</title>
 </head>
-<body>
-    <div class="container">
-        <div class="flex justify-between my-10">
-            <h2 class="text-red-500 text-xl">HOME</h2>
+<body class="bg-brand-gray font-sans text-brand-dark">
+
+    <!-- ========== HEADER ========== -->
+    <header class="sticky top-0 z-50 w-full p-4">
+        <nav class="max-w-6xl w-full bg-white/70 backdrop-blur-lg rounded-xl mx-auto flex items-center justify-between p-2 shadow-sm">
+            <!-- Logo -->
+            <a class="flex items-center gap-2 flex-none py-1 text-xl font-semibold" href="#" aria-label="NutriNish">
+                <img src="images\nutrinish_logo.png" class="w-12 h-12" alt="NutriNish Logo" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F8AFA6/FFFFFF?text=NN';">
+                <span class="font-brand text-2xl text-brand-dark hidden sm:inline">Nutri Nish</span>
+            </a>
+            
+            <!-- Actions -->
+            <div class="flex items-center gap-4">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="text-sm font-medium text-gray-600 hover:text-brand-dark transition-colors">Logout</button>
+                </form>
+                <a class="hidden sm:inline-block px-5 py-2 text-sm font-semibold text-white bg-brand-dark rounded-lg shadow-md hover:bg-black transition-all" href="#">
+                    Book a call
+                </a>
+            </div>
+        </nav>
+    </header>
+    <!-- ========== END HEADER ========== -->
+
+    
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        <!-- Page Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-brand-dark">Welcome to NutriBytes</h1>
+            <p class="text-lg text-gray-600 mt-2">Your daily dose of nutritional wisdom from Nishat Lamia.</p>
+        
+
+        
+                   
             @can('is-admin')
-                <button>            
-                    <a href="/posts/create" class="btn">Add New Post</a>
-                </button>
+                <a href="/posts/create" class="btn-primary mt-12">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block -mt-1 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+                    </svg>
+                    Add New Post
+                </a>
             @endcan
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit" class="btn-red">Logout</button>
-            </form>
         </div>
 
+        <!-- Success Message -->
         @if (session('success'))
-            <div class="bg-green-100 text-green-800 p-4 rounded mb-4">
-                {{ session('success') }}
+            <div class="bg-brand-light-pink border-l-4 border-brand-pink text-brand-dark p-4 rounded-md mb-8 shadow-sm" role="alert">
+                <p class="font-bold">Success</p>
+                <p>{{ session('success') }}</p>
             </div>
         @endif
 
-        <!--
-        <div class="div">
-            <div class="flex flex-col">
-                <div class="-m-1.5 overflow-x-auto">
-                    <div class="p-1.5 min-w-full inline-block align-middle">
-                    <div class="overflow-hidden">
-                        <table class="min-w-full divide-y divide-gray-200 border border-green-600 my-5">
-                        <thead class="bg-green-600 text-white">
-                            <tr>
-                            <th scope="col" class="px-6 py-3 text-start text-xs font-medium  uppercase">ID</th>
-                            <th scope="col" class="px-6 py-3 text-start text-xs font-medium  uppercase">Name</th>
-                            <th scope="col" class="px-6 py-3 text-start text-xs font-medium  uppercase">Description</th>
-                            <th scope="col" class="px-6 py-3 text-start text-xs font-medium  uppercase">Image</th>
-                            <th scope="col" class="px-6 py-3 text-end text-xs font-medium  uppercase">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($posts as $post)
-
-                            <tr class="odd:bg-white even:bg-gray-100">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">{{ $post->id }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{{ $post->name }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{{ $post->description }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800"><img src="images/{{ $post->image }}" width="80rem" alt=""></td>
-               
-                            <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                                @can('is-admin')
-                                <a href="{{route('edit', $post->id)}}" class="btn">Edit</a>
-                                <form method="post" class="inline" action="{{ route('delete', $post->id) }}">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn-red">Delete</button>
-                                </form>
-                                @endcan
-                            </td>
-                            </tr>
-                            
-                            @endforeach
-
-                            
-                        
-                        </tbody>
-                        </table>
-                        
-                        
-                        
+        <!-- Posts Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {{-- Blade loop to iterate over posts --}}
+            @foreach ($posts as $post)
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden group transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1.5">
+                <!-- Card Image -->
+                <div class="aspect-w-16 aspect-h-9">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="images/{{ $post->image }}" alt="Image for {{ $post->name }}" onerror="this.onerror=null;this.src='https://placehold.co/600x400/FDECEC/333333?text=Food+Image';">
+                </div>
+                
+                <!-- Card Content -->
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold text-brand-dark mb-2">
+                        {{ $post->name }} {{{ $post->id }}}
+                    </h3>
+                    <p class="text-gray-600 text-sm flex-grow mb-6">
+                        {{ $post->description }}
+                    </p>
+                    
+                    <!-- Card Actions -->
+                    @can('is-admin')
+                    <div class="mt-auto flex justify-end items-center gap-3">
+                        <a href="{{route('edit', $post->id)}}" class="btn-primary">Edit</a>
+                        <form method="post" class="inline" action="{{ route('delete', $post->id) }}">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn-danger-outline">Delete</button>
+                        </form>
                     </div>
-                    </div>
+                    @endcan
                 </div>
             </div>
-
-            <div class="mt-4 pb-10">
-                {{ $posts->links() }} 
-            </div>
-
-            -->
-            
-                
-                    @foreach ($posts as $post)
-
-                    <div class="col-span-3  bg-white border border-gray-200 rounded-xl shadow-2xs sm:flex gap-4 mt-10 mb-6">
-                    <div class="shrink-0 relative w-full rounded-t-xl pt-[20%] overflow-hidden  sm:rounded-s-xl sm:max-w-60 md:rounded-se-none md:max-w-xs" >
-                        <img class="size-full absolute top-0 start-0 object-cover" src="images/{{ $post->image }}" alt="{{ $post->id }} image" />
-                    </div>
-                    <div class="bg-white flex flex-wrap">
-                        
-                        <div class="p-4 flex flex-col h-full sm:p-7">
-                            
-                        <h3 class="text-lg font-bold text-gray-800 ">
-                            {{ $post->name }}
-                        </h3>
-                        <p class="mt-1 text-black-500 ">
-                            {{ $post->description }}
-                        </p>
-                        <div class="mt-5 sm:mt-auto">
-                            @can('is-admin')
-                            <a href="{{route('edit', $post->id)}}" class="btn">Edit</a>
-                                        <form method="post" class="inline" action="{{ route('delete', $post->id) }}">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" class="btn-red">Delete</button>
-                                        </form>
-                            @endcan
-                        </div>
-                            
-                        </div>
-                        
-                    </div>
-                    </div>
-
-                    @endforeach
-                
-            
-
-
-
-            <div class="mt-4 pb-10">
-                {{ $posts->links() }} <!-- Pagination links -->
-            </div>
-            
-
+            @endforeach
         </div>
-        
-        
-    </div>
+
+        <!-- Pagination -->
+        <div class="mt-12 pb-10 pagination">
+            {{ $posts->links() }}
+        </div>
+
+    </main>
 
 </body>
 </html>

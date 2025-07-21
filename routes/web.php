@@ -30,10 +30,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     // Home route to display posts
-    Route::get('/', function () {
-        $posts = Post::paginate(5); // Fetch all posts to display on the welcome page
-        return view('welcome', compact('posts'));
-    })->name('home');
+    Route::get('/', [PostController::class, 'index'])->name('home');
 
     // Post index can be seen by both admin and observer
     Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
