@@ -64,7 +64,7 @@
         <nav class="max-w-6xl w-full bg-white/70 backdrop-blur-lg rounded-xl mx-auto flex items-center justify-between p-2 shadow-sm">
             <!-- Logo -->
             <a class="flex items-center gap-2 flex-none py-1 text-xl font-semibold" href="/" aria-label="NutriNish">
-                <img src="https://googleusercontent.com/file_content/0" class="w-12 h-12" alt="NutriNish Logo" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F8AFA6/FFFFFF?text=NN';">
+                <img src="{{ asset('images/nutrinish_logo.png') }}" class="w-12 h-12" alt="NutriNish Logo" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F8AFA6/FFFFFF?text=NN';">
                 <span class="font-brand text-2xl text-brand-dark hidden sm:inline">Nutri Nish</span>
             </a>
             
@@ -93,11 +93,12 @@
             <!-- Form -->
             <form method="POST" action="{{ route('update', $ourPost->id) }}" enctype="multipart/form-data" class="space-y-6">
                 @csrf
-                @method('PUT') {{-- Use PUT/PATCH for updates --}}
-                
+                @method('PUT') <!-- Important: Use PUT/PATCH for updates -->
+
                 <!-- Name Field -->
                 <div>
                     <label for="name" class="form-label">Post Title</label>
+                    <!-- FIX: Added name="name" attribute -->
                     <input type="text" id="name" name="name" value="{{ old('name', $ourPost->name) }}" placeholder="e.g., The Benefits of a Balanced Diet" class="form-input">
                     @error('name')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>

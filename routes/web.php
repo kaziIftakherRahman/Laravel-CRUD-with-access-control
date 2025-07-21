@@ -46,7 +46,7 @@ Route::middleware(['auth', 'can:is-admin'])->group(function () {
     Route::get('/posts/create', [PostController::class, 'create'])->name('create');
     Route::post('/posts', [PostController::class, 'ourFileStore'])->name('store');
     Route::get('/posts/{post}/edit', [PostController::class, 'editData'])->name('edit');
-    Route::post('/posts/{post}', [PostController::class, 'updateData'])->name('update');
+    Route::put('/posts/{post}', [PostController::class, 'updateData'])->name('update');
     Route::delete('/posts/{post}', [PostController::class, 'deleteData'])->name('delete');
 });
 
