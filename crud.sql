@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 17, 2025 at 07:04 AM
+-- Generation Time: Jul 21, 2025 at 07:46 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -119,7 +119,10 @@ INSERT INTO `posts` (`id`, `name`, `description`, `image`, `created_at`, `update
 (7, 'Lazer Wave', 'Event organizing', '1752674037.jpg', '2025-07-16 07:53:57', '2025-07-16 22:56:14'),
 (8, 'Kazi Iftakher Rahman', 'CSE from NSU', '1752674220.jpg', '2025-07-16 07:57:00', '2025-07-16 22:57:17'),
 (9, 'Mr. Diy', 'Malaysia', '1752674246.jpg', '2025-07-16 07:57:26', '2025-07-16 07:57:26'),
-(12, 'CR7', 'Siuuuuuuu', '1752727641.jpg', '2025-07-16 22:47:21', '2025-07-16 22:51:06');
+(12, 'CR7', 'Siuuuuuuu', '1752727641.jpg', '2025-07-16 22:47:21', '2025-07-16 22:51:06'),
+(14, 'OMM?', 'Client', '1752993580.png', '2025-07-20 00:39:40', '2025-07-21 11:30:43'),
+(16, 'NutriByte', 'Heard of DASH DIET? A dietary plan focused on reducing blood pressure. So how to do it?? Emphasis on Fruits, Vegetables, and Whole Grains. These foods are rich in potassium, magnesium, and fiber, which are beneficial for blood pressure. Low-Fat or Fat-Free Dairy- Dairy products, especially low-fat or fat-free options, are good sources of calcium and protein. Lean Protein- Fish, poultry, beans, and nuts are included as healthy protein sources. Limited Sodium- The standard DASH diet limits sodium intake to 2,300 mg per day, and a lower sodium version restricts it to 1,500 mg. Reduced Saturated Fat and Sugar- Fatty meats, full-fat dairy, and sweets are limited to help control cholesterol and blood sugar.', '1753083407.jpg', '2025-07-21 01:36:47', '2025-07-21 01:37:22'),
+(19, 'New', 'Teset', '1753109113.jpg', '2025-07-21 08:45:13', '2025-07-21 08:45:13');
 
 -- --------------------------------------------------------
 
@@ -144,8 +147,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `role`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Kazi Arifur Rahman', 'kaziarifurrahman80@gmail.com', 'admin', NULL, '$2y$10$SpUN8/.bJN1v3G1cGpX6oez5OADia9AOUyAPJDY0yYYoj5abo3yYW', NULL, '2025-07-16 21:51:53', '2025-07-16 22:21:10'),
-(2, 'user100', 'user@email.com', 'observer', NULL, '$2y$10$036GywRzYHCMVFdvUuMHsexfNG0xOpGm8btK0yimQX8W4gBI9AWYu', NULL, '2025-07-16 21:53:03', '2025-07-16 21:53:03');
+(1, 'Kazi Arifur Rahman', 'kaziarifurrahman80@gmail.com', 'admin', NULL, '$2y$10$SpUN8/.bJN1v3G1cGpX6oez5OADia9AOUyAPJDY0yYYoj5abo3yYW', 'VrJfF5HvwvwQXf1AtQ3th9XkHI13PoUYSBfEcJyYf3Rjdzl45zlLVmo10Iac', '2025-07-16 21:51:53', '2025-07-16 22:21:10'),
+(2, 'user100', 'user@email.com', 'observer', NULL, '$2y$10$036GywRzYHCMVFdvUuMHsexfNG0xOpGm8btK0yimQX8W4gBI9AWYu', NULL, '2025-07-16 21:53:03', '2025-07-16 21:53:03'),
+(3, 'testUser', 'testUser@gmail.com', 'observer', NULL, '$2y$10$b8teOAavCDJ8mnfr52grGupvMPoedx3okCD5y.ly6tQ8McYjMKmHK', NULL, '2025-07-21 08:30:37', '2025-07-21 08:30:37'),
+(4, 'test3', 'test3@gmail.com', 'observer', NULL, '$2y$10$ufJcEsCObbSPNX1NogeFuOgghb3rQYA3mg8lIceCoPb/MqPxUi6de', NULL, '2025-07-21 08:38:15', '2025-07-21 08:38:15');
 
 --
 -- Indexes for dumped tables
@@ -217,13 +222,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
