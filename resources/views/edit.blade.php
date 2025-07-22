@@ -63,9 +63,10 @@
     <header class="sticky top-0 z-50 w-full p-4">
         <nav class="max-w-6xl w-full bg-white/70 backdrop-blur-lg rounded-xl mx-auto flex items-center justify-between p-2 shadow-sm">
             <!-- Logo -->
-            <a class="flex items-center gap-2 flex-none py-1 text-xl font-semibold" href="/" aria-label="NutriNish">
-                <img src="{{ asset('images/nutrinish_logo.png') }}" class="w-12 h-12" alt="NutriNish Logo" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F8AFA6/FFFFFF?text=NN';">
-                <span class="font-brand text-2xl text-brand-dark hidden sm:inline">Nutri Nish</span>
+            <a class="flex items-center gap-2 flex-none py-1 text-xl font-semibold" href="#" aria-label="NutriNish">
+                <img src="images\nutrinish_logo.png" class="w-12 h-12" alt="NutriNish Logo" onerror="this.onerror=null;">
+                <p>presents</p>
+                <span class="font-brand text-2xl text-brand-dark hidden sm:inline">NutriBytes</span>
             </a>
             
             <!-- Actions -->
