@@ -25,12 +25,12 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
-
-
-Route::middleware('auth')->group(function () {
-    // Home route to display posts
+// Home route to display posts
     Route::get('/', [PostController::class, 'index'])->name('home');
+
+
+    Route::middleware('auth')->group(function () {
+    
 
     // Post index can be seen by both admin and observer
     Route::get('/posts', [PostController::class, 'index'])->name('posts.index');

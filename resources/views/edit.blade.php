@@ -80,10 +80,12 @@
         <nav class="max-w-6xl w-full bg-white/70 backdrop-blur-lg rounded-xl mx-auto flex items-center justify-between p-2 shadow-sm">
             <a class="flex items-center gap-2 flex-none py-1 text-xl font-semibold" href="/" aria-label="NutriNish">
                 <img src="{{ asset('images/nutrinish_logo.png') }}" class="w-12 h-12" alt="NutriNish Logo" onerror="this.onerror=null;this.src='https://placehold.co/50x50/F8AFA6/FFFFFF?text=NN';">
-                <span class="font-brand text-2xl text-brand-dark hidden sm:inline">Nutri Nish</span>
+                <p>presents</p>
+                <span class="font-brand text-2xl text-brand-dark hidden sm:inline">NutriMinis</span>              
             </a>
-            <a href="/" class="text-sm font-medium text-gray-600 hover:text-brand-dark transition-colors">
-                Back to Dashboard
+            
+            <a href="/" class="hidden sm:inline-block px-5 py-2 text-sm font-semibold text-white bg-brand-dark rounded-lg shadow-md hover:bg-black transition-all">
+                Back to Home
             </a>
         </nav>
     </header>
@@ -93,7 +95,7 @@
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div class="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-md">
             <div class="text-center mb-8">
-                <h1 class="text-3xl font-bold text-brand-dark">Edit NutriByte</h1>
+                <h1 class="text-3xl font-bold text-brand-dark">Edit Post</h1>
                 <p class="text-gray-500 mt-2">Refine your post to make it even better.</p>
             </div>
 
