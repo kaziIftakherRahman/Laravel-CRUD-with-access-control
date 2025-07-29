@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NutriBites By NutriNish</title>
+    <title>NutriMinis By NutriNish</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -34,6 +34,9 @@
             }
         }
     </script>
+
+    <!-- Alpine.js for interactivity -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style type="text/tailwindcss">
         /* Custom component styles */
@@ -75,7 +78,7 @@
             <a class="flex items-center gap-2 flex-none py-1 text-xl font-semibold" href="#" aria-label="NutriNish">
                 <img src="images\nutrinish_logo.png" class="w-12 h-12" alt="NutriNish Logo" onerror="this.onerror=null;">
                 <p>presents</p>
-                <span class="font-brand text-2xl text-brand-dark hidden sm:inline">NutriBytes</span>
+                <span class="font-brand text-2xl text-brand-dark hidden sm:inline">NutriMinis</span>
             </a>
             
             <!-- Actions -->
@@ -99,19 +102,18 @@
 
         <!-- Page Header -->
         <div class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-brand-dark">Welcome to <span class="font-brand">NutriBytes </span></h1>
-            <p class="text-lg text-gray-600 mt-6">Your daily dose of nutritional wisdom from NutriNish.</p>
+            <h1 class="text-4xl md:text-5xl font-bold text-brand-dark">Welcome to <span class="font-brand">NutriMinis</span></h1>
+            <p class="text-lg text-gray-600 mt-4">Your daily dose of nutritional wisdom from NutriNish.</p>
         
-
-        
-                   
             @can('is-admin')
-                <a href="/posts/create" class="btn-primary mt-12">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block -mt-1 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
-                    </svg>
-                    Add New Post
-                </a>
+                <div class="mt-8">
+                    <a href="/posts/create" class="btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block -mt-1 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+                        </svg>
+                        Add New Post
+                    </a>
+                </div>
             @endcan
         </div>
 
@@ -127,24 +129,33 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {{-- Blade loop to iterate over posts --}}
             @foreach ($posts as $post)
-            <div class="bg-white rounded-2xl shadow-md overflow-hidden group transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1.5">
-                <!-- Card Image -->
-                <div class="aspect-w-16 aspect-h-9">
-                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="images/{{ $post->image }}" alt="Image for {{ $post->name }}" onerror="this.onerror=null;this.src='https://placehold.co/600x400/FDECEC/333333?text=Food+Image';">
+            <div class="bg-white rounded-2xl shadow-md overflow-hidden group transition-all duration-300 ease-in-out hover:shadow-xl hover:-translate-y-1.5 flex flex-col">
+                <!-- Card Image Container -->
+                <div class="aspect-square max-h-100 overflow-hidden w-full bg-transparent p-4 ">
+                    <!-- The 'object-contain' class fits the image within the container without stretching -->
+                    <img class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" src="{{ asset('images/' . $post->image) }}" alt="Image for {{ $post->name }}" onerror="this.onerror=null;this.src='https://placehold.co/400x400/FDECEC/333333?text=Image+Not+Found';">
                 </div>
                 
                 <!-- Card Content -->
-                <div class="p-6 flex flex-col flex-grow">
+                <div class="p-6 pt-2 flex flex-col flex-grow">
                     <h3 class="text-xl font-bold text-brand-dark mb-2">
-                        {{ $post->name }} {{{ $post->id }}}
+                        {{ $post->name }}
                     </h3>
-                    <p class="text-gray-600 text-sm flex-grow mb-6">
-                        {{ $post->description }}
-                    </p>
+
+                    <!-- Description with See More/Less Toggle -->
+                    <div x-data="{ expanded: false }" class="flex-grow">
+                        <!-- Render HTML from the text editor -->
+                        <div x-bind:class="expanded ? '' : 'line-clamp-4'" class="prose prose-sm max-w-none text-gray-600 mb-2">
+                            {!! $post->description !!}
+                        </div>
+                        <button @click="expanded = !expanded" class="text-brand-dark font-semibold text-sm hover:underline">
+                            <span x-text="expanded ? 'See less' : 'See more'"></span>
+                        </button>
+                    </div>
                     
                     <!-- Card Actions -->
                     @can('is-admin')
-                    <div class="mt-auto flex justify-end items-center gap-3">
+                    <div class="mt-auto flex justify-end items-center gap-3 pt-4 border-t border-gray-100">
                         <a href="{{route('edit', $post->id)}}" class="btn-primary">Edit</a>
                         <form method="post" class="inline" action="{{ route('delete', $post->id) }}">
                             @csrf
